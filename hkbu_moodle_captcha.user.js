@@ -5,8 +5,8 @@
 // @description  Autofill captcha with Tesseract
 // @author       makfc
 // @homepage     https://github.com/makfc/hkbu-moodle-captcha-solver-userscript
-// @updateURL    https://github.com/makfc/hkbu-moodle-captcha-solver-userscript/raw/master/hkbu_moodle_captcha.user.js
-// @downloadURL  https://github.com/makfc/hkbu-moodle-captcha-solver-userscript/raw/master/hkbu_moodle_captcha.user.js
+// @updateURL    https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
+// @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @match        https://buelearning.hkbu.edu.hk/login/index.php
 // @connect      buelearning.hkbu.edu.hk
 // @connect      ec2-18-139-209-106.ap-southeast-1.compute.amazonaws.com
