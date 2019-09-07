@@ -35,6 +35,7 @@
                 url: "http://ec2-18-139-209-106.ap-southeast-1.compute.amazonaws.com:61239/hkbuMoodleCaptcha",
                 dataType: "json",
                 responseType: "json",
+                contentType: "application/json",
                 data: JSON.stringify({"data": urlData.split(',')[1]}),
                 onload: function (response) {
                     console.log(response.response);
@@ -48,9 +49,15 @@
                     document.getElementById("imgcode").src = canvas.toDataURL();
                     if (response.response.captcha.length !== 4) {
                         document.getElementById("imgcode").click();
+                    } else {
+                          var loginerrormessage = document.getElementById("loginerrormessage");
+                          if ((loginerrormessage == null || 
+                              (loginerrormessage != null && loginerrormessage.text === "Your session has timed out. Please log in again.")) &&
+                              document.getElementById("username").value !== "" && 
+                              document.getElementById("password").value !== "")
+                              document.getElementById("loginbtn").click();
                     }
-                },
-                contentType: "application/json"
+                }
             });
         };
     }
