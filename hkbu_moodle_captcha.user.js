@@ -51,8 +51,7 @@
                         document.getElementById("imgcode").click();
                     } else {
                           var loginerrormessage = document.getElementById("loginerrormessage");
-                          if ((loginerrormessage == null || 
-                              (loginerrormessage != null && loginerrormessage.text === "Your session has timed out. Please log in again.")) &&
+                          if ((loginerrormessage == null || loginerrormessage.text === "Your session has timed out. Please log in again.") &&
                               document.getElementById("username").value !== "" && 
                               document.getElementById("password").value !== "")
                               document.getElementById("loginbtn").click();
