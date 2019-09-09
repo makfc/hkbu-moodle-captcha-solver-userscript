@@ -17,7 +17,7 @@
 (async function () {
     'use strict';
 
-    function GetCaptchaAns(urlData) {//data:image/png;base64,xyz=
+    function GetCaptchaAns(urlData) { //data:image/png;base64,xyz=
         let width = 120;
         let height = 70;
         let x = 0;
@@ -36,7 +36,9 @@
                 dataType: "json",
                 responseType: "json",
                 contentType: "application/json",
-                data: JSON.stringify({"data": urlData.split(',')[1]}),
+                data: JSON.stringify({
+                    "data": urlData.split(',')[1]
+                }),
                 onload: function (response) {
                     console.log(response.response);
 
@@ -50,11 +52,13 @@
                     if (response.response.captcha.length !== 4) {
                         document.getElementById("imgcode").click();
                     } else {
-                          var loginerrormessage = document.getElementById("loginerrormessage");
-                          if ((loginerrormessage == null || loginerrormessage.text === "Your session has timed out. Please log in again.") &&
-                              document.getElementById("username").value !== "" && 
-                              document.getElementById("password").value !== "")
-                              document.getElementById("loginbtn").click();
+                        setTimeout(() => {
+                            var loginerrormessage = document.getElementById("loginerrormessage");
+                            if ((loginerrormessage == null || loginerrormessage.text === "Your session has timed out. Please log in again.") &&
+                                document.getElementById("username").value !== "" &&
+                                document.getElementById("password").value !== "")
+                                document.getElementById("loginbtn").click();
+                        }, 500);
                     }
                 }
             });
