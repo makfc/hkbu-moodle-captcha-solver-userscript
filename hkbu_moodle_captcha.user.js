@@ -4,8 +4,6 @@
 // @version      0.1
 // @description  Autofill captcha with Tesseract
 // @author       makfc
-// @homepage     https://github.com/makfc/hkbu-moodle-captcha-solver-userscript
-// @updateURL    https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @match        https://buelearning.hkbu.edu.hk/login/index.php
 // @connect      buelearning.hkbu.edu.hk
