@@ -14,8 +14,9 @@
 
 (async function () {
     'use strict';
-
-    function GetCaptchaAns(urlData) {//data:image/png;base64,xyz=
+    
+    // base64 urlData
+    function GetCaptchaAns(urlData) {
         let width = 120;
         let height = 70;
         let x = 0;
