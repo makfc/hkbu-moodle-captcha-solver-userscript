@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HKBU Moodle captcha autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Autofill captcha with Tesseract
 // @author       makfc
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
@@ -10,11 +10,13 @@
 // @connect      ec2-18-139-209-106.ap-southeast-1.compute.amazonaws.com
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
+// @grant        GM_getValue
+// @grant        GM_setValue
 // ==/UserScript==
 
-(async function () {
+(async function() {
     'use strict';
-    
+
     // base64 urlData
     function GetCaptchaAns(urlData) {
         let width = 120;
@@ -24,7 +26,7 @@
         var img = new Image();
         var canvas = document.createElement('canvas');
         img.src = urlData;
-        img.onload = function (e) {
+        img.onload = function(e) {
             canvas.width = width === 0 ? img.width : width;
             canvas.height = height === 0 ? img.height : height;
             var ctx = canvas.getContext("2d");
@@ -35,8 +37,10 @@
                 dataType: "json",
                 responseType: "json",
                 contentType: "application/json",
-                data: JSON.stringify({"data": urlData.split(',')[1]}),
-                onload: function (response) {
+                data: JSON.stringify({
+                    "data": urlData.split(',')[1]
+                }),
+                onload: function(response) {
                     console.log(response.response);
 
                     document.getElementById("usercaptcha").value = response.response.captcha;
@@ -49,11 +53,19 @@
                     if (response.response.captcha.length !== 4) {
                         document.getElementById("imgcode").click();
                     } else {
-                          var loginerrormessage = document.getElementById("loginerrormessage");
-                          if ((loginerrormessage == null || loginerrormessage.text === "Your session has timed out. Please log in again.") &&
-                              document.getElementById("username").value !== "" && 
-                              document.getElementById("password").value !== "")
-                              document.getElementById("loginbtn").click();
+                        var loginerrormessage = document.getElementById("loginerrormessage");
+                        if (loginerrormessage == null) {
+                            document.getElementById("loginbtn").click();
+                        } else {
+                            let errorCount = GM_getValue("errorCount", 0);
+                            errorCount++;
+                            if (errorCount <= 2) {
+                                GM_setValue("errorCount", errorCount);
+                                document.getElementById("loginbtn").click();
+                            } else {
+                                GM_setValue("errorCount", 0);
+                            }
+                        }
                     }
                 }
             });
@@ -61,13 +73,13 @@
     }
 
     var imgcode = document.getElementById('imgcode');
-    imgcode.onclick = function () {
+    imgcode.onclick = function() {
         GM_xmlhttpRequest({
             method: "POST",
             dataType: 'json',
             responseType: "json",
             url: "https://buelearning.hkbu.edu.hk/bucaptcha/refreshcaptcha.php",
-            onload: function (response) {
+            onload: function(response) {
                 GetCaptchaAns(response.response.imgsrc);
             }
         });
