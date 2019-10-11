@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HKBU Moodle captcha autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Autofill captcha with Tesseract
 // @author       makfc
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
@@ -71,6 +71,9 @@
             });
         };
     }
+    
+    document.getElementById("bu_std_login").style.display = "none";
+    document.getElementById("bu_oth_login").style.display = "block";
 
     var imgcode = document.getElementById('imgcode');
     imgcode.onclick = function() {
