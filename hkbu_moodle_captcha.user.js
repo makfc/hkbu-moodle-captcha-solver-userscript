@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         HKBU Moodle captcha autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.3
-// @description  Autofill captcha with Tesseract
+// @version      0.4
+// @description  Autofill captcha with Tesseract. Due to the "security measures" on chrome, you need to click anywhere on the page, otherwise the autofilled username and password will be empty. (Details: https://stackoverflow.com/questions/36336135/submit-autofill-password-input-field)
 // @author       makfc
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @match        https://buelearning.hkbu.edu.hk/login/index.php
@@ -64,6 +64,11 @@
                                 document.getElementById("loginbtn").click();
                             } else {
                                 GM_setValue("errorCount", 0);
+                                var text = "<div style=\"color:red;white-space:pre-wrap;\">\
+                                            From HKBU Moodle captcha autofill UserScript:<br>\
+                                            Due to the \"security measures\" on chrome, you need to click anywhere on the page, otherwise the autofilled username and password will be empty.<br>\
+                                            (Details: <a href=\"https://stackoverflow.com/questions/36336135/submit-autofill-password-input-field\">https://stackoverflow.com/questions/36336135/submit-autofill-password-input-field</a>)</div>";
+                                document.getElementById("page-content").insertAdjacentHTML('afterbegin', text);                            
                             }
                         }
                     }
