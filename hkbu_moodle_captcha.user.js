@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         HKBU Moodle captcha autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.5
-// @description  Autofill captcha with Tesseract. Due to the "security measures" on chrome, you need to click anywhere on the page, otherwise the autofilled username and password will be empty. (Details: https://stackoverflow.com/questions/36336135/submit-autofill-password-input-field)
+// @version      0.6
+// @description  Autofill captcha with Tesseract. Set your username and password in the Values tab to auto-populate.
 // @author       makfc
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @match        https://buelearning.hkbu.edu.hk/login/index.php
@@ -17,6 +17,20 @@
 (async function() {
     'use strict';
 
+    var username = GM_getValue("username", "");
+    if (username === "") {
+        GM_setValue("username", username);
+    } else {
+        document.getElementById("username").value = username;
+    }
+
+    var password = GM_getValue("password", "");
+    if (password === "") {
+        GM_setValue("password", password);
+    } else {
+        document.getElementById("password").value = password;
+    }
+    
     // urlData: base64 string
     function GetCaptchaAns(urlData) {
         var img = new Image();
