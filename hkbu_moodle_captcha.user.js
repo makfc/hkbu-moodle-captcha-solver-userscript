@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HKBU Moodle captcha autofill
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  Autofill captcha with Tesseract. Set your username and password in the Values tab to auto-populate.
 // @author       makfc
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
