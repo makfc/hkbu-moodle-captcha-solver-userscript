@@ -7,7 +7,7 @@
 // @downloadURL  https://raw.githubusercontent.com/makfc/hkbu-moodle-captcha-solver-userscript/master/hkbu_moodle_captcha.user.js
 // @match        https://buelearning.hkbu.edu.hk/login/index.php
 // @connect      buelearning.hkbu.edu.hk
-// @connect      ec2-13-250-40-22.ap-southeast-1.compute.amazonaws.com
+// @connect      ec2-54-179-228-184.ap-southeast-1.compute.amazonaws.com
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getValue
@@ -42,7 +42,7 @@
         ctx.drawImage(img, 0, 0);
         GM_xmlhttpRequest({
             method: "POST",
-            url: "http://ec2-13-250-40-22.ap-southeast-1.compute.amazonaws.com:61239/hkbuMoodleCaptcha",
+            url: "http://ec2-54-179-228-184.ap-southeast-1.compute.amazonaws.com:61239/hkbuMoodleCaptcha",
             dataType: "json",
             responseType: "json",
             contentType: "application/json",
